@@ -23,9 +23,9 @@ Window {
             id: label1
             x: 55
             y: 330
-            text: qsTr("Heellloooo")
+            text: qsTr("Welcome! " + login.handledUser)
             color: "#ffffff"
-            font.pointSize: 10
+            font.pointSize: 20
         }
 
         CustomButton {
@@ -37,19 +37,6 @@ Window {
             enabled: true
             text: "X"
             onClicked: welcomeScreen.close()
-        }
-
-        CustomButton {
-            id: whoBtn
-            x: 30
-            y: 495
-            width: 300
-            height: 40
-            enabled: true
-            text: "Who Am I?"
-            onClicked: {
-                login.handledUser = label1.text
-            }
         }
     }
 }
