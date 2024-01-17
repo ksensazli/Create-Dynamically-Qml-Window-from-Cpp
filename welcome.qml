@@ -30,7 +30,7 @@ Window {
 
         CustomButton {
             id: closeBtn
-            x: 305
+            x: 310
             y: 25
             width: 30
             height: 30

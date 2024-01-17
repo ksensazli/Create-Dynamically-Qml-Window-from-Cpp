@@ -6,5 +6,6 @@
         <file>components/CustomTextField.qml</file>
         <file>images/logo.png</file>
         <file>welcome.qml</file>
+        <file>register.qml</file>
     </qresource>
 </RCC>

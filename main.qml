@@ -45,13 +45,12 @@ Window {
         Label {
             id: label1
             x: 55
-            y: 330
+            y: 291
             opacity: 1
             color: "#ffffff"
             text: qsTr("Please enter Username and password")
-            anchors.bottom: textUsername.top
-            anchors.bottomMargin: 20
             anchors.horizontalCenterOffset: 0
+            font.family: "Segoe UI"
             anchors.horizontalCenter: parent.horizontalCenter
             font.pointSize: 10
         }
@@ -59,12 +58,12 @@ Window {
         Label {
             id: label
             x: 100
-            y: 294
+            y: 261
             opacity: 1
             color: "#ffffff"
             text: qsTr("Sign in to HydroApp")
-            anchors.bottom: label1.top
-            anchors.bottomMargin: 10
+            anchors.horizontalCenterOffset: 0
+            font.family: "Segoe UI"
             font.pointSize: 16
             anchors.horizontalCenter: parent.horizontalCenter
         }
@@ -72,7 +71,7 @@ Window {
         CustomTextField {
             id: textUsername
             x: 30
-            y: 395
+            y: 291
             opacity: 1
             placeholderText: "Username"
         }
@@ -80,7 +79,7 @@ Window {
         CustomTextField {
             id: textPassword
             x: 30
-            y: 445
+            y: 341
             opacity: 1
             echoMode: TextInput.Password
             placeholderText: "Password"
@@ -89,7 +88,7 @@ Window {
         CustomButton {
             id: loginBtn
             x: 30
-            y: 495
+            y: 391
             width: 300
             height: 40
             opacity: 1
@@ -101,6 +100,21 @@ Window {
                     var window    = component.createObject(loginSystem)
                     window.show()
                 }
+            }
+        }
+
+        CustomButton {
+            id: registerBtn
+            x: 30
+            y: 441
+            width: 300
+            height: 40
+            opacity: 1
+            text: "Register"
+            onClicked: {
+                var component = Qt.createComponent("register.qml")
+                var window    = component.createObject(loginSystem)
+                window.show()
             }
         }
 
@@ -181,7 +195,7 @@ Window {
                 }
 
                 Keyframe {
-                    value: 395
+                    value: 345
                     frame: 3000
                 }
             }
@@ -214,7 +228,7 @@ Window {
                 }
 
                 Keyframe {
-                    value: 445
+                    value: 395
                     frame: 3000
                 }
             }
@@ -247,13 +261,46 @@ Window {
                 }
 
                 Keyframe {
-                    value: 495
+                    value: 445
                     frame: 3000
                 }
             }
 
             KeyframeGroup {
                 target: loginBtn
+                property: "opacity"
+                Keyframe {
+                    value: 0
+                    frame: 0
+                }
+
+                Keyframe {
+                    value: 0
+                    frame: 2500
+                }
+
+                Keyframe {
+                    value: 1
+                    frame: 3000
+                }
+            }
+
+            KeyframeGroup {
+                target: registerBtn
+                property: "y"
+                Keyframe {
+                    value: 295
+                    frame: 2500
+                }
+
+                Keyframe {
+                    value: 495
+                    frame: 3000
+                }
+            }
+
+            KeyframeGroup {
+                target: registerBtn
                 property: "opacity"
                 Keyframe {
                     value: 0
