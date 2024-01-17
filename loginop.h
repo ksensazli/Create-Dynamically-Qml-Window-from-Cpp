@@ -38,9 +38,6 @@ private:
 
 signals:
     void handledUserChanged(const QString & handledUser);
-
-public slots:
-    void userEqual();
 };
 
 #endif // LOGINOP_H
