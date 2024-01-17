@@ -21,9 +21,7 @@ void loginOp::userCheck(const QString &username, const QString &password)
             break;
         }
         else {
-            qDebug() << "Login failed!";
             correction = 0;
-            break;
         }
     }
 }
