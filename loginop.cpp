@@ -11,23 +11,19 @@ loginOp::loginOp(QObject *parent) : QObject{parent}
 
 void loginOp::userCheck(const QString &username, const QString &password)
 {
-    QQmlApplicationEngine engine;
-    QQmlComponent component(&engine);
-    QQmlContext* context = engine.rootContext();
-
-    context->setContextProperty("login", this);
-    component.loadUrl(QUrl(QStringLiteral("qrc:/welcome.qml")));
-
-    if(component.isReady())
+    for(int i=0; i<userList.length(); i+=2)
     {
-        for(int i=0; i<userList.length(); i+=2)
+        if(userList.at(i) == username && userList.at(i+1) == password)
         {
-            if(userList.at(i) == username && userList.at(i+1) == password)
-            {
-                qDebug() << "Success for" << username;
-                handledUser = username;
-                component.create();
-            }
+            qDebug() << "Success for" << username;
+            handledUser = username;
+            correction = 1;
+            break;
+        }
+        else {
+            qDebug() << "Login failed!";
+            correction = 0;
+            break;
         }
     }
 }
