@@ -96,6 +96,11 @@ Window {
             text: "Login"
             onClicked: {
                 login.userCheck(textUsername.text, textPassword.text)
+                if(login.correction) {
+                    var component = Qt.createComponent("welcome.qml")
+                    var window    = component.createObject(loginSystem)
+                    window.show()
+                }
             }
         }
 
