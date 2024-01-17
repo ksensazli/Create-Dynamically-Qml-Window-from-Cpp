@@ -31,8 +31,3 @@ void loginOp::userCheck(const QString &username, const QString &password)
         }
     }
 }
-
-void loginOp::userEqual()
-{
-    qDebug() << "Handled User is: " << handledUser;
-}
