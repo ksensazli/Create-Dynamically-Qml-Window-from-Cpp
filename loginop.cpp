@@ -11,8 +11,11 @@ loginOp::loginOp(QObject *parent) : QObject{parent}
 
 void loginOp::userCheck(const QString &username, const QString &password)
 {
-    QQmlEngine engine;
+    QQmlApplicationEngine engine;
     QQmlComponent component(&engine);
+    QQmlContext* context = engine.rootContext();
+
+    context->setContextProperty("login", this);
     component.loadUrl(QUrl(QStringLiteral("qrc:/welcome.qml")));
 
     if(component.isReady())
