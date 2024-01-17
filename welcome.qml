@@ -10,7 +10,7 @@ Window {
     visible: true
     color: "#00000000"
 
-    flags: Qt.FramelessWindowHint
+    flags:Qt.FramelessWindowHint
 
     Rectangle {
         id: loginScreen
@@ -34,7 +34,7 @@ Window {
             y: 25
             width: 30
             height: 30
-            enabled: true
+            opacity: 1
             text: "X"
             onClicked: welcomeScreen.close()
         }
