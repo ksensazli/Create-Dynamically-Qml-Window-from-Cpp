@@ -2,16 +2,12 @@
 
 loginOp::loginOp(QObject *parent) : QObject{parent}
 {
-
+    setFile();
 }
 
 void loginOp::userCheck(const QString &username, const QString &password)
 {
-    QFile file("/Users/ksensazli/Qt_Projects/loginSystem/database.csv");
-    file.open(QIODevice::ReadOnly);
-    QTextStream stream(&file);
-    userList = stream.readAll().split(QRegExp("[\r\n';']"), QString::SkipEmptyParts);
-    file.close();
+    setFile();
 
     for(int i=0; i<userList.length(); i+=2)
     {
@@ -29,16 +25,44 @@ void loginOp::userCheck(const QString &username, const QString &password)
 
 void loginOp::userRegister(const QString &username, const QString &password, const QString &rePassword)
 {
-    if(password == rePassword)
+    setFile();
+    QString tempUser;
+
+    for(int i=0; i<userList.length(); i+=2)
     {
+        if(userList.at(i) == username)
+        {
+            tempUser = username;
+            isAlreadyExist = true;
+            break;
+        }
+
+        else
+        {
+            isAlreadyExist = false;
+        }
+    }
+
+    if(tempUser == username)
+    {
+        qDebug() << tempUser << "already registered!";
+    }
+    else if(password == rePassword)
+    {
+        qDebug() << username << "registered successfully!";
         QFile out("/Users/ksensazli/Qt_Projects/loginSystem/database.csv");
-        out.open(QIODevice::WriteOnly | QIODevice::Append);
+        out.open(QIODevice::ReadWrite | QIODevice::Append);
         QTextStream outStream(&out);
         outStream << "\n" + username + ";" + password;
         out.close();
-        isRegister = true;
     }
-    else {
-        isRegister = false;
-    }
+}
+
+void loginOp::setFile()
+{
+    QFile file("/Users/ksensazli/Qt_Projects/loginSystem/database.csv");
+    file.open(QIODevice::ReadOnly);
+    QTextStream stream(&file);
+    userList = stream.readAll().split(QRegExp("[\r\n';']"), QString::SkipEmptyParts);
+    file.close();
 }

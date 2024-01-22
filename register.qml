@@ -7,8 +7,8 @@ import "components"
 
 Window {
     id: loginSystem
-    width: 380
-    height: 580
+    width: 360
+    height: 560
     visible: true
     color: "#00000000"
 
@@ -28,7 +28,7 @@ Window {
             width: 30
             height: 30
             opacity: 1
-            text: "X"
+            text: "<"
             onClicked: loginSystem.close()
         }
 
@@ -94,11 +94,16 @@ Window {
             text: "Register"
             onClicked: {
                 login.userRegister(textUsername.text, textPassword.text, textRePassword.text)
-                if(!login.isRegister) {
-                    failedMessageDialog.setVisible(true)
+                if(!login.isAlreadyExist) {
+                    if(textPassword.text != textRePassword.text) {
+                        failedMessageDialog.setVisible(true)
+                    }
+                    else {
+                        successMessageDialog.setVisible(true)
+                    }
                 }
                 else {
-                    successMessageDialog.setVisible(true)
+                    alreadyExistDialog.setVisible(true)
                 }
             }
         }
@@ -127,6 +132,13 @@ Window {
             text: "The user has registered!"
             visible: false
             onAccepted: loginSystem.close()
+        }
+
+        MessageDialog {
+            id: alreadyExistDialog
+            title: "Failed!"
+            text: "The username is already exist."
+            visible: false
         }
     }
 

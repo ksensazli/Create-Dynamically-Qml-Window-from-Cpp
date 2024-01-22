@@ -1,6 +1,7 @@
 #ifndef LOGINOP_H
 #define LOGINOP_H
 
+#include <QDir>
 #include <QFile>
 #include <QDebug>
 #include <QObject>
@@ -20,11 +21,15 @@ public:
 
     Q_INVOKABLE void userCheck(const QString &username, const QString &password);
     Q_INVOKABLE void userRegister(const QString &username, const QString &password, const QString &rePassword);
+
+    void setFile();
+
     Q_PROPERTY(QString handledUser READ handledUserText WRITE handledUserSet NOTIFY handledUserChanged);
     Q_PROPERTY(bool correction READ correctionText WRITE correctionSet NOTIFY correctionChanged);
-    Q_PROPERTY(bool isRegister READ isRegisterText WRITE isRegisterSet NOTIFY isRegisterChanged);
+    Q_PROPERTY(bool isAlreadyExist READ isAlreadyExistText WRITE isAlreadyExistSet NOTIFY isAlreadyExistChanged);
 
-    bool correction, isRegister;
+    bool correction;
+    bool isAlreadyExist = false;
 
     QString handledUserText() const{
         return handledUser;
@@ -34,8 +39,8 @@ public:
         return correction;
     }
 
-    bool isRegisterText() const{
-        return isRegister;
+    bool isAlreadyExistText() const{
+        return isAlreadyExist;
     }
 
     void handledUserSet(const QString &handledUserText){
@@ -52,11 +57,11 @@ public:
         emit correctionChanged(correction);
     }
 
-    void isRegisterSet(const bool &isRegisterText){
-        if(isRegisterText == isRegister)
+    void isAlreadyExistSet(const bool &isAlreadyExistText){
+        if(isAlreadyExistText == isAlreadyExist)
             return;
-        isRegister = isRegisterText;
-        emit isRegisterChanged(isRegister);
+        isAlreadyExist = isAlreadyExistText;
+        emit isAlreadyExistChanged(isAlreadyExist);
     }
 
 private:
@@ -66,7 +71,7 @@ private:
 signals:
     void handledUserChanged(const QString & handledUser);
     void correctionChanged(const bool & correction);
-    void isRegisterChanged(const bool & isRegister);
+    void isAlreadyExistChanged(const bool & isAlreadyExist);
 };
 
 #endif // LOGINOP_H

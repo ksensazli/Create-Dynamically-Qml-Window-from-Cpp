@@ -1,13 +1,14 @@
 import QtQuick 2.15
 import QtQuick.Window 2.15
 import QtQuick.Controls 2.15
+import QtQuick.Dialogs 1.1
 import QtQuick.Timeline 1.0
 import "components"
 
 Window {
     id: loginSystem
-    width: 380
-    height: 580
+    width: 360
+    height: 560
     visible: true
     color: "#00000000"
 
@@ -100,6 +101,9 @@ Window {
                     var window    = component.createObject(loginSystem)
                     window.show()
                 }
+                else {
+                    loginFailedMessage.setVisible(true)
+                }
             }
         }
 
@@ -116,6 +120,13 @@ Window {
                 var window    = component.createObject(loginSystem)
                 window.show()
             }
+        }
+
+        MessageDialog {
+            id: loginFailedMessage
+            title: "Error!"
+            text: "Username or password incorrect!"
+            visible: false
         }
 
         Timeline {

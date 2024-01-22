@@ -5,8 +5,8 @@ import "components"
 
 Window {
     id: welcomeScreen
-    width: 380
-    height: 580
+    width: 360
+    height: 560
     visible: true
     color: "#00000000"
 
@@ -30,7 +30,7 @@ Window {
 
         CustomButton {
             id: closeBtn
-            x: 310
+            x: 305
             y: 25
             width: 30
             height: 30
