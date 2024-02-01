@@ -6,12 +6,6 @@
 #include <QDebug>
 #include <QObject>
 #include <QRegExp>
-#include <QQmlEngine>
-#include <QQmlContext>
-#include <QQuickWindow>
-#include <QQmlComponent>
-#include <QGuiApplication>
-#include <QQmlApplicationEngine>
 
 class loginOp : public QObject
 {
