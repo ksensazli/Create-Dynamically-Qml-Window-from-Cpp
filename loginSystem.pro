@@ -12,6 +12,8 @@ SOURCES += \
 
 RESOURCES += qml.qrc
 
+DEFINES += PROJECT_PATH=\"\\\"$${_PRO_FILE_PWD_}/\\\"\"
+
 # Additional import path used to resolve QML modules in Qt Creator's code model
 QML_IMPORT_PATH =
 

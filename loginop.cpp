@@ -50,7 +50,7 @@ void loginOp::userRegister(const QString &username, const QString &password, con
     else if(password == rePassword)
     {
         qDebug() << username << "registered successfully!";
-        QFile out("/Users/ksensazli/Qt_Projects/loginSystem/database.csv");
+        QFile out(PROJECT_PATH "/database.csv");
         out.open(QIODevice::ReadWrite | QIODevice::Append);
         QTextStream outStream(&out);
         outStream << "\n" + username + ";" + password;
@@ -60,7 +60,7 @@ void loginOp::userRegister(const QString &username, const QString &password, con
 
 void loginOp::setFile()
 {
-    QFile file("/Users/ksensazli/Qt_Projects/loginSystem/database.csv");
+    QFile file(PROJECT_PATH "/database.csv");
     file.open(QIODevice::ReadOnly);
     QTextStream stream(&file);
     userList = stream.readAll().split(QRegExp("[\r\n';']"), QString::SkipEmptyParts);
